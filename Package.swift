@@ -14,18 +14,29 @@ let package = Package(
     products: [
         .library(name: "Location",
                  targets: ["Location"]),
-        .library(
-            name: "Publisher+Result",
+        .library(name: "Publisher+Result",
             targets: ["Publisher+Result"]),
-        .library(
-            name: "TypeEraseError",
+        .library(name: "TypeEraseError",
             targets: ["TypeEraseError"]),
+        .library(name: "ReactiveSwiftCombine",
+                 targets: ["ReactiveSwiftCombine"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(
+            url: "https://github.com/ReactiveCocoa/ReactiveSwift.git",
+            .upToNextMajor(from: .init(6, 0, 0))
+        ),
+    ],
     targets: [
         .target(name: "Location"),
         .target(name: "Publisher+Result"),
         .target(name: "TypeEraseError"),
+        .target(
+            name: "ReactiveSwiftCombine",
+            dependencies: [
+                .product(name: "ReactiveSwift", package: "ReactiveSwift"),
+            ]
+        ),
 
         .testTarget(
             name: "TypeEraseErrorTests",
