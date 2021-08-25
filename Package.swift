@@ -22,7 +22,10 @@ let package = Package(
                  targets: ["ReactiveSwiftCombine"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/ReactiveCocoa/ReactiveSwift.git", from: .init(6, 0, 0)),
+        .package(
+            url: "https://github.com/ReactiveCocoa/ReactiveSwift.git",
+            .upToNextMajor(from: .init(6, 0, 0))
+        ),
     ],
     targets: [
         .target(name: "Location"),

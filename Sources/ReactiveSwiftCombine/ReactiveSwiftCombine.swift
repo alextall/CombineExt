@@ -42,7 +42,7 @@ extension Publisher {
 }
 
 extension Signal {
-    func bridge() -> AnyPublisher<Value, Error> {
+    func publisher() -> AnyPublisher<Value, Error> {
         ReactiveSwiftPublisher(signalProducer: producer)
             .eraseToAnyPublisher()
     }

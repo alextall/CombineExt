@@ -1,7 +1,7 @@
 import Combine
 import ReactiveSwift
 
-public struct ReactiveSwiftPublisher<Output, Failure: Error>: Publisher {
+struct ReactiveSwiftPublisher<Output, Failure: Error>: Publisher {
 
     private let signalProducer: SignalProducer<Output, Failure>
 
@@ -9,7 +9,7 @@ public struct ReactiveSwiftPublisher<Output, Failure: Error>: Publisher {
         self.signalProducer = signalProducer
     }
 
-    public func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
+    func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
         let subscription = ReactiveSwiftSubscription(signalProducer: signalProducer, subscriber: subscriber)
         subscriber.receive(subscription: subscription)
     }
